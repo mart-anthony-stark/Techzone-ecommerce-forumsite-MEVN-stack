@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "bcryptjs": "^2.4.3",
+    "koa": "^2.13.4",
+    "koa-combine-routers": "^4.0.2",
+    "mongoose": "^6.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "mart-anthony-stark",
+  "license": "ISC"
+}
