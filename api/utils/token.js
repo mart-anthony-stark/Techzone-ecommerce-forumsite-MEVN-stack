@@ -4,7 +4,7 @@ const createToken = (user) => {
   return jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: "3d" });
 };
 
-const verifyToken = (ctx, next) => {
+const verifyToken = async (ctx, next) => {
   const authHeader = ctx.request.headers.token;
   if (!authHeader) {
     ctx.status = 403;
@@ -13,20 +13,27 @@ const verifyToken = (ctx, next) => {
   }
 
   const token = authHeader.split(" ")[1];
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
     if (err) {
       ctx.status = 403;
       ctx.body = { error: "Invalid token" };
       return;
     }
 
-    req.user = user;
+    ctx.user = user;
     await next();
   });
 };
 
-const verifyTokenAndAuth = (ctx, next) => {
-  
-}
+const verifyTokenAndAdmin = (ctx, next) => {
+  verifyToken(ctx, async () => {
+    if (ctx.user.role === "admin") {
+      await next();
+    } else {
+      ctx.status = 403;
+      ctx.body = { error: "You dont have permission" };
+    }
+  });
+};
 
-module.exports = { createToken };
+module.exports = { createToken, verifyToken, verifyTokenAndAdmin };
