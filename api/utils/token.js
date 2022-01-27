@@ -20,14 +20,15 @@ const verifyToken = async (ctx, next) => {
       return;
     }
 
-    ctx.user = user;
+    ctx.user = user.user;
     await next();
   });
 };
 
-const verifyTokenAndAdmin = (ctx, next) => {
-  verifyToken(ctx, async () => {
+const verifyTokenAndAdmin = async (ctx, next) => {
+  await verifyToken(ctx, async () => {
     if (ctx.user.role === "admin") {
+      console.log("next");
       await next();
     } else {
       ctx.status = 403;
