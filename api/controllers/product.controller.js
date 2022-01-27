@@ -57,9 +57,20 @@ const updateProduct = async (ctx) => {
   }
 };
 
+const deleteProduct = async (ctx) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(ctx.request.params.id);
+    ctx.body = { deleted };
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error };
+  }
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };
