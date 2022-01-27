@@ -19,5 +19,14 @@ const getAllProducts = async (ctx) => {
 };
 
 const getProductById = async (ctx) => {
-    
+  try {
+    const product = await Product.findById(ctx.request.params.id);
+    ctx.status = 200;
+    ctx.body = { product };
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error };
+  }
 };
+
+module.exports = { getAllProducts, getProductById };
