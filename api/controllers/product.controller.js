@@ -29,4 +29,16 @@ const getProductById = async (ctx) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById };
+const createProduct = async (ctx) => {
+  try {
+    const product = new Product(ctx.request.body);
+    await product.save();
+    ctx.status = 200;
+    ctx.body = { product };
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error };
+  }
+};
+
+module.exports = { getAllProducts, getProductById, createProduct };
