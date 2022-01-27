@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
       enum: ["phone", "laptop", "tablet", "accessories"],
     },
     photo: { type: String, required: true },
-    rating: { type: Number, required: true },
+    rating: { type: Number, default: 0 },
     price: { type: Number, required: true },
     specs: { type: Array, required: true },
     description: { type: String, required: true },
