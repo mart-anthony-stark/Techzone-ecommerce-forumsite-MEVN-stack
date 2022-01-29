@@ -25,8 +25,12 @@ module.exports = {
   createPost: async (req, reply) => {
     try {
       const { title, body } = req.body;
-      const post = await new Post({ author: req.user._id, title, body }).save();
-      reply.code(200).send("posted");
+      const post = await new Post({
+        author: req.user._id,
+        title,
+        body,
+      }).save();
+      reply.code(200).send(post);
     } catch (error) {
       reply.code(500).send({ error });
     }
@@ -34,7 +38,6 @@ module.exports = {
 
   deletePost: async (req, reply) => {
     try {
-      console.log(req.params.id);
       const post = await Post.findOneAndRemove({ _id: req.params.id });
       reply.code(200).send(post);
     } catch (error) {
