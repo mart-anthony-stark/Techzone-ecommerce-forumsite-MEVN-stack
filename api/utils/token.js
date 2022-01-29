@@ -17,6 +17,11 @@ const verifyToken = async (req, reply, next) => {
   });
 };
 
+const verifyId = async (req, reply, next) => {
+  if (req.user._id === req.params.id) next();
+  else return reply.code(403).send({ error: "You don't have permission" });
+};
+
 const verifyAdmin = (req, reply, next) => {
   if (req.user.role === "admin") {
     next();
@@ -25,4 +30,4 @@ const verifyAdmin = (req, reply, next) => {
   }
 };
 
-module.exports = { createToken, verifyToken, verifyAdmin };
+module.exports = { createToken, verifyToken, verifyAdmin, verifyId };
