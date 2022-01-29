@@ -5,7 +5,7 @@ const createToken = (user) => {
 };
 
 const verifyToken = async (req, reply, next) => {
-  const authHeader = ctx.request.headers.token;
+  const authHeader = req.headers.token;
   if (!authHeader) return reply.code(403).send({ error: "Unauthenticated" });
 
   const token = authHeader.split(" ")[1];
@@ -17,14 +17,12 @@ const verifyToken = async (req, reply, next) => {
   });
 };
 
-const verifyTokenAndAdmin = (req, reply, next) => {
-  verifyToken(req, reply, () => {
-    if (req.user.role === "admin") {
-      next();
-    } else {
-      reply.code(403).send({ error: "You dont have permission" });
-    }
-  });
+const verifyAdmin = (req, reply, next) => {
+  if (req.user.role === "admin") {
+    next();
+  } else {
+    reply.code(403).send({ error: "You dont have permission" });
+  }
 };
 
-module.exports = { createToken, verifyToken, verifyTokenAndAdmin };
+module.exports = { createToken, verifyToken, verifyAdmin };
