@@ -1,7 +1,7 @@
+const postController = require("../controllers/post.controller");
+
 const postRoutes = (fastify, options, done) => {
-  fastify.get("/posts", (req, reply) => {
-    reply.send("Posts");
-  });
+  fastify.get("/posts", postController.getAllPosts);
   done();
 };
 
