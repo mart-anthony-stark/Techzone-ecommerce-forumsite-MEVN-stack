@@ -6,6 +6,7 @@ const port = process.env.PORT || 5000;
 
 // routes
 fastify.register(require("./routes/auth.route"));
+fastify.register(require("./routes/product.route"));
 
 fastify.listen(port, async (e) => {
   if (e) return console.log(e);
