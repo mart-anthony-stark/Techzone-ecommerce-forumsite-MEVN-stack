@@ -1,8 +1,9 @@
-const Router = require("@koa/router");
-const router = new Router({ prefix: "/auth" });
 const authController = require("../controllers/auth.controller");
 
-router.post("/login", authController.login);
-router.post("/signup", authController.signup);
+const authRoutes = (fastify, options, done) => {
+  fastify.post("/auth/login", authController.login);
+  fastify.post("/auth/register", authController.signup);
+  done();
+};
 
-module.exports = router;
+module.exports = authRoutes;
