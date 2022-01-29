@@ -1,11 +1,11 @@
 const fastify = require("fastify")({ logger: true });
-
 const mongoose = require("mongoose");
 require("dotenv").config({});
 
 const port = process.env.PORT || 5000;
 
-// middlewares
+// routes
+fastify.register(require("./routes/auth.route"));
 
 fastify.listen(port, async (e) => {
   if (e) return console.log(e);
