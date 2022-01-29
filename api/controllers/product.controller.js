@@ -1,8 +1,8 @@
 const Product = require("../models/Product.model");
 
-const getAllProducts = async (ctx) => {
+const getAllProducts = async (req, reply) => {
   try {
-    const queryCategory = ctx.request.query.category;
+    const queryCategory = req.query.category;
     let products;
 
     if (queryCategory) {
@@ -10,35 +10,28 @@ const getAllProducts = async (ctx) => {
     } else {
       products = await Product.find();
     }
-    ctx.status = 200;
-    ctx.body = { products };
+    reply.code(200).send(products);
   } catch (error) {
-    ctx.status = 500;
-    ctx.body = { error };
+    reply.code(500).send({ error });
   }
 };
 
-const getProductById = async (ctx) => {
+const getProductById = async (req, reply) => {
   try {
-    const product = await Product.findById(ctx.request.params.id);
-    ctx.status = 200;
-    ctx.body = { product };
+    const product = await Product.findById(req.params.id);
+    reply.code(200).send(product);
   } catch (error) {
-    ctx.status = 500;
-    ctx.body = { error };
+    reply.code(500).send({ error });
   }
 };
 
-const createProduct = async (ctx) => {
+const createProduct = async (req, reply) => {
   try {
-    const product = await new Product(ctx.request.body).save();
-    ctx.body = { product };
-    ctx.status = 200;
-    console.log("the response status is ", ctx.status);
+    const product = await new Product(req.body).save();
+    reply.code(200).send(product);
   } catch (error) {
     console.log(error);
-    ctx.status = 500;
-    ctx.body = { error };
+    reply.code(500).send({ error });
   }
 };
 
@@ -52,8 +45,7 @@ const updateProduct = async (ctx) => {
     );
     ctx.response.body = { updatedProduct };
   } catch (error) {
-    ctx.status = 500;
-    ctx.body = { error };
+    reply.code(500).send({ error });
   }
 };
 
@@ -62,8 +54,7 @@ const deleteProduct = async (ctx) => {
     const deleted = await Product.findByIdAndDelete(ctx.request.params.id);
     ctx.body = { deleted };
   } catch (error) {
-    ctx.status = 500;
-    ctx.body = { error };
+    reply.code(500).send({ error });
   }
 };
 
