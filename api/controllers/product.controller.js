@@ -35,24 +35,24 @@ const createProduct = async (req, reply) => {
   }
 };
 
-const updateProduct = async (ctx) => {
+const updateProduct = async (req, reply) => {
   try {
     const updatedProduct = await Product.findOneAndUpdate(
       {
-        _id: ctx.request.params.id,
+        _id: req.params.id,
       },
-      { $set: ctx.request.body }
+      { $set: req.body }
     );
-    ctx.response.body = { updatedProduct };
+    reply.code(200).send(updatedProduct);
   } catch (error) {
     reply.code(500).send({ error });
   }
 };
 
-const deleteProduct = async (ctx) => {
+const deleteProduct = async (req, reply) => {
   try {
-    const deleted = await Product.findByIdAndDelete(ctx.request.params.id);
-    ctx.body = { deleted };
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+    reply.code(200).send(deleted);
   } catch (error) {
     reply.code(500).send({ error });
   }
