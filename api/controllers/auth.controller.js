@@ -2,26 +2,22 @@ const User = require("../models/User.model");
 const bcrypt = require("bcryptjs");
 const { createToken } = require("../utils/token");
 
-const login = async (ctx) => {
-  const { username, email, password } = ctx.request.body;
+const login = async (req, reply) => {
+  const { username, email, password } = req.body;
   try {
     const user = await User.findOne({ $or: [{ username }, { email }] });
-    if (!user) {
-      ctx.status = 404;
-      ctx.body = { success: false, msg: "Account not found" };
-      return;
-    }
+    if (!user)
+      return reply.code(404).send({ success: false, msg: "Account not found" });
 
     const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
-      ctx.status = 401;
-      ctx.body = { success: false, msg: "Incorrect password" };
-      return;
-    }
+    if (!validPassword)
+      return reply
+        .code(401)
+        .send({ success: false, msg: "Incorrect password" });
+
     const token = createToken(user);
     user._doc.password = undefined;
-    ctx.status = 200;
-    ctx.body = { success: true, user: user._doc, token };
+    reply.code(200).send({ success: true, user: user._doc, token });
   } catch (error) {
     console.log(error);
     ctx.status = 500;
