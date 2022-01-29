@@ -5,7 +5,7 @@ const postRoutes = (fastify, options, done) => {
   fastify.get("/posts", postController.getAllPosts);
   fastify.get("/posts/:id", postController.getPostById);
   fastify.post(
-    "/posts",
+    "/posts/create",
     { preHandler: [verifyToken] },
     postController.createPost
   );
