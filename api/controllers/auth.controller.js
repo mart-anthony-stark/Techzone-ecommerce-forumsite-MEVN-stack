@@ -20,13 +20,12 @@ const login = async (req, reply) => {
     reply.code(200).send({ success: true, user: user._doc, token });
   } catch (error) {
     console.log(error);
-    ctx.status = 500;
-    ctx.body = { msg: error };
+    reply.code(500).send({ success: false, error });
   }
 };
 
-const signup = async (ctx) => {
-  const { name, username, email, password } = ctx.request.body;
+const signup = async (req, reply) => {
+  const { name, username, email, password } = req.body;
   try {
     const user = new User({
       name,
@@ -40,12 +39,10 @@ const signup = async (ctx) => {
     await user.save();
     const token = createToken(user);
     user._doc.password = undefined;
-    ctx.status = 200;
-    ctx.body = { success: true, user: user._doc, token };
+    reply.code(200).send({ success: true, user: user._doc, token });
   } catch (error) {
     console.log(error);
-    ctx.status = 500;
-    ctx.body = { msg: error };
+    reply.code(500).send({ success: false, error });
   }
 };
 
