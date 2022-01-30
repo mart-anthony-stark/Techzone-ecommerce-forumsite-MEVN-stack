@@ -9,6 +9,11 @@ const postRoutes = (fastify, options, done) => {
     { preHandler: [verifyToken] },
     postController.createPost
   );
+  fastify.put(
+    "/posts/:id",
+    { preHandler: [verifyToken] },
+    postController.updatePost
+  );
   fastify.delete(
     "/posts/:id",
     { preHandler: [verifyToken] },
