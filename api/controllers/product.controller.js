@@ -41,7 +41,8 @@ const updateProduct = async (req, reply) => {
       {
         _id: req.params.id,
       },
-      { $set: req.body }
+      { $set: req.body },
+      { new: true }
     );
     reply.code(200).send(updatedProduct);
   } catch (error) {
