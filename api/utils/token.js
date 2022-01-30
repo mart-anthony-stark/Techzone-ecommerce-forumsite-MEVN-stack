@@ -4,7 +4,7 @@ const createToken = (user) => {
   return jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: "3d" });
 };
 
-const verifyToken = async (req, reply, next) => {
+const verifyToken = (req, reply, next) => {
   const authHeader = req.headers.token;
   if (!authHeader) return reply.code(403).send({ error: "Unauthenticated" });
 
@@ -17,7 +17,7 @@ const verifyToken = async (req, reply, next) => {
   });
 };
 
-const verifyId = async (req, reply, next) => {
+const verifyId = (req, reply, next) => {
   if (req.user._id === req.params.id) next();
   else return reply.code(403).send({ error: "You don't have permission" });
 };
