@@ -19,4 +19,15 @@ module.exports = {
       reply.code(500).send({ error });
     }
   },
+  createOrder: async (req, reply) => {
+    try {
+      const order = await new Order({
+        customer: req.user._id,
+        ...req.body,
+      }).save();
+      reply.send(order);
+    } catch (error) {
+      reply.code(500).send({ error });
+    }
+  },
 };
