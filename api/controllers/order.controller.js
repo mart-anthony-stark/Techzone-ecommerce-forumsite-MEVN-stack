@@ -1,3 +1,7 @@
+const {
+  findOneAndUpdate,
+  findByIdAndUpdate,
+} = require("../models/Order.model");
 const Order = require("../models/Order.model");
 
 module.exports = {
@@ -31,6 +35,17 @@ module.exports = {
         customer: req.user._id,
         ...req.body,
       }).save();
+      reply.send(order);
+    } catch (error) {
+      reply.code(500).send({ error });
+    }
+  },
+  updateOrder: async (req, reply) => {
+    if (req.body.customer) req.body.customer = undefined;
+    try {
+      const order = await findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
       reply.send(order);
     } catch (error) {
       reply.code(500).send({ error });
