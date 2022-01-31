@@ -43,10 +43,23 @@ module.exports = {
   updateOrder: async (req, reply) => {
     if (req.body.customer) req.body.customer = undefined;
     try {
-      const order = await findByIdAndUpdate(req.params.id, {
-        $set: req.body,
-      });
+      const order = await Order.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
       reply.send(order);
+    } catch (error) {
+      console.log(error);
+      reply.code(500).send({ error });
+    }
+  },
+  deleteOrder: async (req, reply) => {
+    try {
+      const orders = await Order.findByIdAndDelete(req.params.id);
+      reply.send(orders);
     } catch (error) {
       reply.code(500).send({ error });
     }
