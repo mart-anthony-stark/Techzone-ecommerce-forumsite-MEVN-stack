@@ -17,10 +17,15 @@ const orderRoutes = (fastify, options, done) => {
     { preHandler: [verifyToken] },
     orderController.createOrder
   );
+  fastify.delete(
+    "/orders/:id",
+    { preHandler: [verifyToken, verifyAdmin] },
+    orderController.deleteOrder
+  );
   fastify.put(
     "/orders/:id",
     { preHandler: [verifyToken, verifyAdmin] },
-    orderController.createOrder
+    orderController.updateOrder
   );
   done();
 };
