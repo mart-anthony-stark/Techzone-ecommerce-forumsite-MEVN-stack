@@ -9,4 +9,14 @@ module.exports = {
       reply.code(500).send({ error });
     }
   },
+  getUserOrders: async (req, reply) => {
+    try {
+      const orders = await Order.find({ customer: req.params.uid }).sort({
+        timestamp: "desc",
+      });
+      reply.send(orders);
+    } catch (error) {
+      reply.code(500).send({ error });
+    }
+  },
 };
