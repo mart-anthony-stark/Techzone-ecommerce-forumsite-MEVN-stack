@@ -12,6 +12,11 @@ const orderRoutes = (fastify, options, done) => {
     { preHandler: [verifyToken, verifyUID] },
     orderController.getUserOrders
   );
+  fastify.post(
+    "/orders",
+    { preHandler: [verifyToken] },
+    orderController.createOrder
+  );
   done();
 };
 
