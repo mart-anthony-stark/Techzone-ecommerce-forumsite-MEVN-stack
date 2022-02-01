@@ -18,6 +18,11 @@ const cartRoutes = (fastify, options, done) => {
     { preHandler: [verifyToken] },
     cartController.createCart
   );
+  fastify.put(
+    "/carts/:uid",
+    { preHandler: [verifyToken, verifyUID] },
+    cartController.updateCart
+  );
   done();
 };
 module.exports = cartRoutes;
