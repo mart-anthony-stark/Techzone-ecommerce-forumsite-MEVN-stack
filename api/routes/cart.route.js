@@ -23,6 +23,11 @@ const cartRoutes = (fastify, options, done) => {
     { preHandler: [verifyToken, verifyUID] },
     cartController.updateCart
   );
+  fastify.delete(
+    "/carts/:uid",
+    { preHandler: [verifyToken, verifyUID] },
+    cartController.deleteCart
+  );
   done();
 };
 module.exports = cartRoutes;
