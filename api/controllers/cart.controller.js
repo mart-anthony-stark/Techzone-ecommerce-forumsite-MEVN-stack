@@ -3,7 +3,9 @@ const Cart = require("../models/Cart.model");
 module.exports = {
   getAllCarts: async (req, reply) => {
     try {
-      const carts = await Cart.find().populate('userId').populate("products.product");
+      const carts = await Cart.find()
+        .populate("userId")
+        .populate("products.product");
       reply.code(200).send(carts);
     } catch (error) {
       reply.code(500).send({ error });
@@ -11,7 +13,10 @@ module.exports = {
   },
   getCartByUser: async (req, reply) => {
     try {
-      const cart = await Cart.findOne({ userId: req.params.uid });
+      const cart = await Cart.findOne({ userId: req.params.uid })
+        .populate("userId")
+        .populate("products.product");
+      cart.userId.password = undefined;
       reply.code(200).send(cart);
     } catch (error) {
       reply.code(500).send({ error });
