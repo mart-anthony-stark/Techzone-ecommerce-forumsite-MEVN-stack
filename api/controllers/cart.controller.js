@@ -3,7 +3,7 @@ const Cart = require("../models/Cart.model");
 module.exports = {
   getAllCarts: async (req, reply) => {
     try {
-      const carts = await Cart.find();
+      const carts = await Cart.find().populate('userId').populate("products.product");
       reply.code(200).send(carts);
     } catch (error) {
       reply.code(500).send({ error });
