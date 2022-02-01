@@ -31,8 +31,8 @@ module.exports = {
   updateCart: async (req, reply) => {
     if (req.body.userId) req.body.userId = undefined;
     try {
-      const cart = await Cart.findByIdAndUpdate(
-        req.params.id,
+      const cart = await Cart.findOneAndUpdate(
+        { userId: req.params.uid },
         {
           $set: req.body,
         },
