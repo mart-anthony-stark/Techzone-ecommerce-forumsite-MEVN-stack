@@ -28,4 +28,19 @@ module.exports = {
       reply.code(500).send({ error });
     }
   },
+  updateCart: async (req, reply) => {
+    if (req.body.userId) req.body.userId = undefined;
+    try {
+      const cart = await Cart.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      reply.code(200).send(cart);
+    } catch (error) {
+      reply.code(500).send({ error });
+    }
+  },
 };
