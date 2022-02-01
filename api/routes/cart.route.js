@@ -1,12 +1,17 @@
 const cartController = require("../controllers/cart.controller");
 
-const { verifyToken, verifyUID } = require("../utils/token");
+const { verifyToken, verifyUID, verifyAdmin } = require("../utils/token");
 
 const cartRoutes = (fastify, options, done) => {
   fastify.get(
+    "/carts",
+    { preHandler: [verifyToken, verifyAdmin] },
+    cartController.getAllCarts
+  );
+  fastify.get(
     "/carts/:uid",
     { preHandler: [verifyToken, verifyUID] },
-    cartController.getAllCarts
+    cartController.getCartByUser
   );
   done();
 };
