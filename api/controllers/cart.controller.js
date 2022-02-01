@@ -43,4 +43,14 @@ module.exports = {
       reply.code(500).send({ error });
     }
   },
+  deleteCart: async (req, reply) => {
+    try {
+      const cart = await Cart.findOneAndDelete({
+        userId: req.params.uid,
+      });
+      reply.code(200).send(cart);
+    } catch (error) {
+      reply.code(500).send({ error });
+    }
+  },
 };
