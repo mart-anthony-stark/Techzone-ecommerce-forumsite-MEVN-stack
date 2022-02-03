@@ -57,7 +57,7 @@
           :index="i"
           :author="post.author.name"
           :dp="post.author.img"
-          :total-comments="post.totalComments"
+          :total-comments="post.comments.length"
           @up="up"
           @down="down"
         />
@@ -87,7 +87,7 @@ export default {
         return (
           post.title.match(regex) ||
           post.body.match(regex) ||
-          post.author.match(regex)
+          post.author.name.match(regex)
         )
       })
     },
