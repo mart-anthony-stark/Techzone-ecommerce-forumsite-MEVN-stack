@@ -23,15 +23,30 @@
         />
       </button>
     </div>
-    <div class="right text-center w-full">
+    <div class="right w-full text-center">
       <h1 class="text-center font-extrabold text-l mb-12">{{ title }}</h1>
 
       <h3 v-if="body.length < 250" class="body text-justify">{{ body }}</h3>
       <h3 v-else class="body text-justify">{{ body.substring(0, 250) }}...</h3>
 
-      <span class="read-more cursor-pointer underlined">Read More</span>
-
-      <div class="details flex justify-between absolute w-full py-2">
+      <span
+        v-if="body.length >= 250"
+        class="read-more cursor-pointer underlined"
+        >Read More</span
+      >
+      <div
+        class="
+          details
+          absolute
+          bottom-0
+          left-0
+          flex
+          justify-between
+          w-full
+          px-8
+          py-2
+        "
+      >
         <div class="flex items-end">
           <img :src="dp" class="w-12 mr-2 profile" />
           <span class="flex">
@@ -71,15 +86,13 @@ export default {
 .read-more {
   color: var(--c-pri);
 }
-.details {
-  bottom: 15px;
-  width: calc(100% - 70px);
-}
 .body {
   margin-bottom: 15px;
 }
 .details {
+  width: calc(100% - 70px);
   border-top: 1px solid rgba(0, 0, 0, 0.7);
+  width: 100%;
 }
 img.profile {
   width: 50px;
