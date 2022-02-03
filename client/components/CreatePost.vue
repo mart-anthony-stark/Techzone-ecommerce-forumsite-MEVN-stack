@@ -17,8 +17,8 @@
         >X</span
       >
       <h1 class="text-center text-lg bold">Create Post</h1>
-      <input type="text" placeholder="Title" />
-      <textarea placeholder="What's on your mind?"></textarea>
+      <input class="p-2" type="text" placeholder="Title" />
+      <textarea class="p-2" placeholder="What's on your mind?"></textarea>
       <button class="bg-pri text-white py-2">POST</button>
     </div>
     <div class="overlay fixed inset-0 z-40"></div>
