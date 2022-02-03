@@ -55,7 +55,7 @@
           :disliked="post.disliked"
           :body="post.body"
           :index="i"
-          :author="post.author.name"
+          :author="post.author"
           :dp="post.author.img"
           :total-comments="post.comments.length"
           @up="up"
