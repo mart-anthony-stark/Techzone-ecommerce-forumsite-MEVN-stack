@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 require("dotenv").config({});
 
 const port = process.env.PORT || 5000;
+// CORS
+fastify.register(require('fastify-cors'));
 // routes
 fastify.register(require("./routes/auth.route"));
 fastify.register(require("./routes/product.route"));
