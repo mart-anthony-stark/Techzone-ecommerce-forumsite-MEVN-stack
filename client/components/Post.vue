@@ -49,9 +49,12 @@
       >
         <div class="flex items-end">
           <img :src="dp" class="w-12 mr-2 profile" />
-          <span class="flex">
-            <h1 class="text-blue-500 mr-1">{{ author }}</h1>
-            <h3 class="text-gray-500 italic">• author</h3>
+          <span class="flex flex-col">
+            <h1 class="text-blue-500 mr-1">{{ author.name }}</h1>
+            <div class="flex">
+              <h1 class="text-blue-500 mr-1">{{ author.username }}</h1>
+              <h3 class="text-gray-500 italic">• author</h3>
+            </div>
           </span>
         </div>
         <div class="flex items-center gap-2">
@@ -72,7 +75,7 @@ export default {
     body: String,
     index: Number,
     dp: String,
-    author: String,
+    author: Object,
     totalComments: Number,
   },
 }
