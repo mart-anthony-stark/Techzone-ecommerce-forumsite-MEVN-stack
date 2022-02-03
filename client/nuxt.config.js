@@ -79,4 +79,7 @@ export default {
       },
     },
   },
+  env: {
+    baseUrl: process.env.BASE_API_URL || 'http://localhost:5000',
+  },
 }
