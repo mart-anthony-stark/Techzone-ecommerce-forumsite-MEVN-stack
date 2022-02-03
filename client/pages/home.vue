@@ -93,7 +93,7 @@ export default {
     },
   },
   async mounted() {
-    const res = await fetch('/data/posts.json')
+    const res = await fetch(`${process.env.baseUrl}/posts`)
     const data = await res.json()
 
     this.$store.commit('posts/populate', data)
