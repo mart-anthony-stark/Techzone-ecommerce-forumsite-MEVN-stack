@@ -8,6 +8,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^14.3.2",
     "fastify": "^3.27.0",
+    "fastify-cors": "^6.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7"
   },
