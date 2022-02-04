@@ -116,7 +116,7 @@ export default {
       this.getPosts()
     },
   },
-  async mounted() {
+  mounted() {
     this.getPosts()
   },
 }
