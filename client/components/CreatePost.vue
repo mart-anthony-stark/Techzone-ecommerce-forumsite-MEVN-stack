@@ -19,8 +19,12 @@
       <h1 @click="createNewPost" class="text-center text-lg bold">
         Create Post
       </h1>
-      <input class="p-2" type="text" placeholder="Title" />
-      <textarea class="p-2" placeholder="What's on your mind?"></textarea>
+      <input v-model="title" class="p-2" type="text" placeholder="Title" />
+      <textarea
+        v-model="body"
+        class="p-2"
+        placeholder="What's on your mind?"
+      ></textarea>
       <button class="bg-pri text-white py-2">POST</button>
     </div>
     <div class="overlay fixed inset-0 z-40"></div>
@@ -37,6 +41,10 @@ export default {
   },
   methods: {
     async createNewPost() {
+      if (this.title.length === 0 || this.body.length === 0) {
+        console.log('All fields are required')
+        return
+      }
       try {
         const res = await fetch(`${process.env.baseUrl}/posts/create`, {
           method: 'POST',
