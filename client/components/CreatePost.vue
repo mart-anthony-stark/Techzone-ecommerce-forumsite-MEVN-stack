@@ -16,7 +16,9 @@
         "
         >X</span
       >
-      <h1 class="text-center text-lg bold">Create Post</h1>
+      <h1 @click="createNewPost" class="text-center text-lg bold">
+        Create Post
+      </h1>
       <input class="p-2" type="text" placeholder="Title" />
       <textarea class="p-2" placeholder="What's on your mind?"></textarea>
       <button class="bg-pri text-white py-2">POST</button>
@@ -24,6 +26,20 @@
     <div class="overlay fixed inset-0 z-40"></div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: '',
+      body: '',
+    }
+  },
+  methods: {
+    asynccreateNewPost() {},
+  },
+}
+</script>
 
 <style scoped>
 .overlay {
