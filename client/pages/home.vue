@@ -1,6 +1,10 @@
 <template>
   <div class="home mt-24">
-    <CreatePost v-if="createShown" @closeCreatePost="createShown = false" />
+    <CreatePost
+      @createdPost="handleCreatedPost"
+      v-if="createShown"
+      @closeCreatePost="createShown = false"
+    />
     <h1 class="font-bold text-center text-4xl mb-8 text-sec">Tech Forum</h1>
 
     <!-- SEARCH BAR -->
@@ -92,23 +96,28 @@ export default {
       })
     },
   },
-  async mounted() {
-    const res = await fetch(`${process.env.baseUrl}/posts`)
-    const data = await res.json()
-
-    this.$store.commit('posts/populate', data)
-
-    setTimeout(() => {
-      this.loading = false
-    }, 1000)
-  },
   methods: {
+    async getPosts() {
+      const res = await fetch(`${process.env.baseUrl}/posts`)
+      const data = await res.json()
+
+      this.$store.commit('posts/populate', data)
+
+      this.loading = false
+    },
     up(index) {
       this.$store.commit('posts/up', index)
     },
     down(index) {
       this.$store.commit('posts/down', index)
     },
+    handleCreatedPost() {
+      this.createShown = false
+      this.getPosts()
+    },
+  },
+  async mounted() {
+    this.getPosts()
   },
 }
 </script>
