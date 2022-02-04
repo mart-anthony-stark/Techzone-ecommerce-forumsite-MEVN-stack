@@ -36,7 +36,25 @@ export default {
     }
   },
   methods: {
-    asynccreateNewPost() {},
+    async createNewPost() {
+      try {
+        const res = await fetch(`${process.env.baseUrl}/posts/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            token: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ title: this.title, body: this.body }),
+        })
+        const data = await res.json()
+        console.log(data)
+        this.title = ''
+        this.body = ''
+        this.$emit('createdPost')
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
 }
 </script>
