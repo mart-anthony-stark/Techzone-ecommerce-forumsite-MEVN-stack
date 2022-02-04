@@ -16,16 +16,16 @@
         "
         >X</span
       >
-      <h1 @click="createNewPost" class="text-center text-lg bold">
-        Create Post
-      </h1>
+      <h1 class="text-center text-lg bold">Create Post</h1>
       <input v-model="title" class="p-2" type="text" placeholder="Title" />
       <textarea
         v-model="body"
         class="p-2"
         placeholder="What's on your mind?"
       ></textarea>
-      <button class="bg-pri text-white py-2">POST</button>
+      <button @click="createNewPost" class="bg-pri text-white py-2">
+        POST
+      </button>
     </div>
     <div class="overlay fixed inset-0 z-40"></div>
   </div>
@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     async createNewPost() {
+      console.log('Post')
       if (this.title.length === 0 || this.body.length === 0) {
         console.log('All fields are required')
         return
@@ -60,7 +61,7 @@ export default {
         this.body = ''
         this.$emit('createdPost')
       } catch (error) {
-        console.log(error)
+        // console.log(error)
       }
     },
   },
