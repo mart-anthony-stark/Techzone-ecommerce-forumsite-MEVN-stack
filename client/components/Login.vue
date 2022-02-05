@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    handleLogin(e) {
+    async handleLogin(e) {
       e.preventDefault()
       if (this.email === '') this.errors.email = 'Email is required.'
       else this.errors.email = ''
@@ -80,8 +80,24 @@ export default {
 
       this.success = this.errors.email === '' && this.errors.password === ''
       if (this.success) {
-        this.$store.commit('auth/login')
-        this.$router.push({ path: '/home' })
+        const res = await fetch(`${process.env.baseUrl}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: this.email, password: this.password }),
+        })
+        const data = await res.json()
+        console.log(data)
+        if (!data.success) {
+          data.msg === 'Account not found'
+            ? (this.errors.email = data.msg)
+            : (this.errors.password = data.msg)
+        } else {
+          localStorage.setItem('token', data.token)
+          this.$store.commit('auth/login', data.user)
+          this.$router.push({ path: '/home' })
+        }
       }
     },
   },
