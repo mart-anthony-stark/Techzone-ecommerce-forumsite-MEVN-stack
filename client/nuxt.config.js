@@ -66,6 +66,8 @@ export default {
 
   target: 'static',
 
+  ssr: false,
+
   render: {
     static: {
       setHeaders(res) {
