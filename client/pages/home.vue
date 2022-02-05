@@ -26,6 +26,7 @@
 
     <div class="mb-8 flex justify-end pr-20">
       <button
+        v-if="isAuth"
         class="post-btn bg-pri rounded text-white extrbold px-6 py-2"
         @click="createShown = true"
       >
@@ -82,6 +83,9 @@ export default {
     }
   },
   computed: {
+    isAuth() {
+      return this.$store.state.auth.isLogged
+    },
     posts() {
       return this.$store.state.posts.posts
     },
