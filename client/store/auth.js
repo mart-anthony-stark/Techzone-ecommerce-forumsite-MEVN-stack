@@ -10,5 +10,6 @@ export const mutations = {
   },
   logout(state) {
     state.isLogged = false
+    state.user = {}
   },
 }
