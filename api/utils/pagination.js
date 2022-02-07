@@ -1,11 +1,8 @@
-const paginate = async (req, model) => {
-  try {
-    const paginated = await model.find();
-    return paginated;
-  } catch (error) {
-    console.log(error);
-  }
-  return "sd";
+const paginate = (model) => {
+  return async (req, reply, next) => {
+    req.paginated = "asd";
+    next();
+  };
 };
 
 module.exports = paginate;
