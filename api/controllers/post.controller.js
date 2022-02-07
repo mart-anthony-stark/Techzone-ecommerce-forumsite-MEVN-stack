@@ -2,7 +2,9 @@ const Post = require("../models/Post.model");
 
 module.exports = {
   getPaginated: async (req, reply) => {
-    reply.code(200).send(req.results);
+    let populatedRes = req.results;
+    populatedRes.result.forEach((post) => (post.author.password = undefined));
+    reply.code(200).send(populatedRes);
   },
   getAllPosts: async (req, reply) => {
     try {
