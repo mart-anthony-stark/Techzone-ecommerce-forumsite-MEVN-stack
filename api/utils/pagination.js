@@ -21,13 +21,13 @@ const paginate = (model) => {
         limit: limit,
       };
     }
-    
+
     try {
       results.result = await model.find().limit(limit).skip(startIndex).exec();
       req.results = results;
       next();
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      reply.code(500).send({ message: err.message });
     }
   };
 };
