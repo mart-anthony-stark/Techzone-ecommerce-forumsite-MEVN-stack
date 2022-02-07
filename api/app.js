@@ -1,16 +1,23 @@
 const fastify = require("fastify")({ logger: true });
 const mongoose = require("mongoose");
+const UserModel = require("./models/User.model");
 require("dotenv").config({});
 
 const port = process.env.PORT || 5000;
 // CORS
-fastify.register(require('fastify-cors'));
+fastify.register(require("fastify-cors"));
 // routes
 fastify.register(require("./routes/auth.route"));
 fastify.register(require("./routes/product.route"));
 fastify.register(require("./routes/post.route"));
 fastify.register(require("./routes/order.route"));
 fastify.register(require("./routes/cart.route"));
+
+const paginate = require("./utils/pagination");
+fastify.get("/", async (req, reply) => {
+  const paginatedUsers = await paginate(req, UserModel);
+  reply.send(paginatedUsers);
+});
 
 fastify.listen(port, async (e) => {
   if (e) return fastify.log.error(e);
