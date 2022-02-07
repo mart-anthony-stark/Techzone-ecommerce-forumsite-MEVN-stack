@@ -1,6 +1,9 @@
 const Post = require("../models/Post.model");
 
 module.exports = {
+  getPaginated: async (req, reply) => {
+    reply.code(200).send(req.results);
+  },
   getAllPosts: async (req, reply) => {
     try {
       const posts = await Post.find().populate("author");
