@@ -80,6 +80,7 @@ export default {
       search: '',
       loading: true,
       loaders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      currentPage: 1,
     }
   },
   computed: {
@@ -102,12 +103,12 @@ export default {
   },
   methods: {
     async getPosts() {
-      const res = await fetch(`${process.env.baseUrl}/posts`)
+      const res = await fetch(
+        `${process.env.baseUrl}/posts/paginated?page=${this.currentPage}&limit=5`
+      )
       const data = await res.json()
-
-      this.$store.commit('posts/populate', data)
-
       this.loading = false
+      return data.result
     },
     up(index) {
       this.$store.commit('posts/up', index)
@@ -120,8 +121,9 @@ export default {
       this.getPosts()
     },
   },
-  mounted() {
-    this.getPosts()
+  async mounted() {
+    const posts = await this.getPosts()
+    this.$store.commit('posts/populate', posts)
   },
 }
 </script>
