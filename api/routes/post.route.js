@@ -8,7 +8,7 @@ const postRoutes = (fastify, options, done) => {
   fastify.get("/posts", postController.getAllPosts);
   fastify.get(
     "/posts/paginated",
-    { preHandler: [paginate(PostModel)] },
+    { preHandler: [paginate(PostModel, { populate: ["author"] })] },
     postController.getPaginated
   );
   fastify.get("/posts/:id", postController.getPostById);
