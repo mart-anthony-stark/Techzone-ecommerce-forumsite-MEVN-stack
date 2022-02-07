@@ -15,7 +15,7 @@ fastify.register(require("./routes/cart.route"));
 
 const paginate = require("./utils/pagination");
 fastify.get("/", { preHandler: [paginate(UserModel)] }, async (req, reply) => {
-  reply.send(req.paginated);
+  reply.send(req.results);
 });
 
 fastify.listen(port, async (e) => {
