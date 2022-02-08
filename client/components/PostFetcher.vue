@@ -4,8 +4,9 @@
 
 <script>
 export default {
-    mounted(){
-        
-    }
+  props: ['index', 'limit'],
+  mounted() {
+    console.log(this.index, this.limit)
+  },
 }
 </script>
