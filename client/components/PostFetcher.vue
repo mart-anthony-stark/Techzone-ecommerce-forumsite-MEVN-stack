@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  props: ['index', 'loading'],
+  props: ['loading'],
   data() {
     return {
       limit: 5,
@@ -14,11 +14,14 @@ export default {
     posts() {
       return this.$store.state.posts.posts
     },
+    currentPage() {
+      return this.$store.state.posts.currentPage
+    },
   },
   methods: {
     async getData() {
       const res = await fetch(
-        `${process.env.baseUrl}/posts/paginated?page=${this.index}&limit=${this.limit}`
+        `${process.env.baseUrl}/posts/paginated?page=${this.currentPage}&limit=${this.limit}`
       )
       const data = await res.json()
       console.log(data)
