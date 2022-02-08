@@ -128,7 +128,7 @@ export default {
     const posts = await this.getPosts()
 
     this.$store.commit('posts/populate', posts)
-    this.$store.commit('posts/nextPage')
+    if (posts.length !== 0) this.$store.commit('posts/nextPage')
   },
 }
 </script>
