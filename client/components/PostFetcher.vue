@@ -23,16 +23,14 @@ export default {
   mounted() {
     const root = document.querySelector('#fetcher')
     const options = {
-      //   root: document.querySelector('#fetcher'),
       rootMargin: '0px',
       threshold: 1.0,
     }
-    const observer = new IntersectionObserver(() => {
+    const observer = new IntersectionObserver(async () => {
       if (!this.loading) {
         console.log('Fetching...')
-        const posts = await this.getPosts()
+        const posts = await this.getData()
         this.$store.commit('posts/populate', posts)
-        this.getData()
       }
     }, options)
 
