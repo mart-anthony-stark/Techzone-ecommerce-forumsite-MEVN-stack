@@ -33,6 +33,6 @@ export const mutations = {
     state.currentPage += 1
   },
   resetPages(state) {
-    state.currentPage = 0
+    state.currentPage = 1
   },
 }
