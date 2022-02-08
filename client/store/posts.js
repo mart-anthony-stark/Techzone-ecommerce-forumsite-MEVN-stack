@@ -29,4 +29,7 @@ export const mutations = {
   populate(state, posts) {
     state.posts = posts
   },
+  nextPage(state) {
+    state.currentPage += 1
+  },
 }
