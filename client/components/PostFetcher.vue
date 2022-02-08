@@ -30,6 +30,8 @@ export default {
     const observer = new IntersectionObserver(() => {
       if (!this.loading) {
         console.log('Fetching...')
+        const posts = await this.getPosts()
+        this.$store.commit('posts/populate', posts)
         this.getData()
       }
     }, options)
