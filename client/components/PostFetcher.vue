@@ -40,6 +40,7 @@ export default {
         const newPosts = await this.getData()
         const populatedPosts = [...this.posts, ...newPosts]
         this.$store.commit('posts/populate', populatedPosts)
+        if (newPosts.length !== 0) this.$store.commit('posts/nextPage')
       }
     }, options)
 
