@@ -130,6 +130,9 @@ export default {
     this.$store.commit('posts/populate', posts)
     if (posts.length !== 0) this.$store.commit('posts/nextPage')
   },
+  destroyed(){
+    this.$store.commit('posts/resetPages')
+  }
 }
 </script>
 
