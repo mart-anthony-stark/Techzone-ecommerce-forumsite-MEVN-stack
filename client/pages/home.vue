@@ -68,7 +68,7 @@
         />
       </div>
       <Noresult v-if="filteredPost.length === 0 && !loading" />
-      <PostFetcher :index="currentPage" />
+      <PostFetcher :index="currentPage" :loading="loading" />
     </div>
   </div>
 </template>
