@@ -10,6 +10,11 @@ export default {
       limit: 5,
     }
   },
+  computed: {
+    posts() {
+      return this.$store.state.posts.posts
+    },
+  },
   methods: {
     async getData() {
       const res = await fetch(
@@ -29,8 +34,9 @@ export default {
     const observer = new IntersectionObserver(async () => {
       if (!this.loading) {
         console.log('Fetching...')
-        const posts = await this.getData()
-        this.$store.commit('posts/populate', posts)
+        const newPosts = await this.getData()
+        const populatedPosts = [...this.posts, ...newPosts]
+        this.$store.commit('posts/populate', populatedPosts)
       }
     }, options)
 
