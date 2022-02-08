@@ -124,6 +124,7 @@ export default {
   },
   async mounted() {
     const posts = await this.getPosts()
+    this.currentPage++
     this.$store.commit('posts/populate', posts)
   },
 }
