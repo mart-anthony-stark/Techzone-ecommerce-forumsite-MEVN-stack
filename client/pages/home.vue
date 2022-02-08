@@ -68,7 +68,7 @@
         />
       </div>
       <Noresult v-if="filteredPost.length === 0 && !loading" />
-      <PostFetcher :index="currentPage" :loading="loading" />
+      <PostFetcher :loading="loading" />
     </div>
   </div>
 </template>
@@ -81,10 +81,12 @@ export default {
       search: '',
       loading: true,
       loaders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      currentPage: 1,
     }
   },
   computed: {
+    currentPage() {
+      return this.$store.state.posts.currentPage
+    },
     isAuth() {
       return this.$store.state.auth.isLogged
     },
@@ -124,7 +126,7 @@ export default {
   },
   async mounted() {
     const posts = await this.getPosts()
-    this.currentPage++
+    
     this.$store.commit('posts/populate', posts)
   },
 }
