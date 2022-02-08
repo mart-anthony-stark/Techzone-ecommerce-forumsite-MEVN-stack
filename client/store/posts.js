@@ -32,4 +32,7 @@ export const mutations = {
   nextPage(state) {
     state.currentPage += 1
   },
+  resetPages(state) {
+    state.currentPage = 0
+  },
 }
