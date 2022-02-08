@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  props: ['index', 'limit'],
+  props: ['index'],
+  data() {
+    return {
+      limit: 5,
+    }
+  },
   mounted() {
     console.log(this.index, this.limit)
   },
