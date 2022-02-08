@@ -1,5 +1,6 @@
 export const state = () => ({
   posts: [],
+  currentPage: 1,
 })
 
 export const mutations = {
@@ -29,10 +30,3 @@ export const mutations = {
     state.posts = posts
   },
 }
-
-// export const actions = {
-//   async allPosts(context) {
-//     const data = await this.$axios.$get('/data/posts.json')
-//     console.log(data)
-//   },
-// }
