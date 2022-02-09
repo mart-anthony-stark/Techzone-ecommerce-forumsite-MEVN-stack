@@ -25,10 +25,9 @@ const login = async (req, reply) => {
 };
 
 const signup = async (req, reply) => {
-  const { name, username, email, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     const user = new User({
-      name,
       username,
       email,
       password: password,
