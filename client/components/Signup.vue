@@ -113,14 +113,15 @@ export default {
         const data = await res.json()
         console.log(data)
         if (!data.success) {
-          console.log(data.error.keyPattern.username)
-          if(data.error.keyPattern){
-            
+          if (data.error.keyPattern) {
+            for (const duplicates in data.error.keyPattern) {
+              console.log(duplicates)
+            }
           }
         } else {
-          localStorage.setItem('token', data.token)
-          this.$store.commit('auth/login', data.user)
-          this.$router.push({ path: '/home' })
+          // localStorage.setItem('token', data.token)
+          // this.$store.commit('auth/login', data.user)
+          // this.$router.push({ path: '/home' })
         }
         // this.$store.commit('auth/login')
         // this.$router.push({ path: '/home' })
