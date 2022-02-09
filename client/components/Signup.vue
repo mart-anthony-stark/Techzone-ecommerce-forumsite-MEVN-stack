@@ -92,7 +92,7 @@ export default {
       else this.errors.email = ''
 
       if (this.password.length < 8)
-        this.errors.password = 'Password is required.'
+        this.errors.password = 'Password must be at least 8 characters.'
       else this.errors.password = ''
 
       this.success =
