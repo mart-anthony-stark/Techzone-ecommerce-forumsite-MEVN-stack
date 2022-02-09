@@ -99,8 +99,8 @@ export default {
         this.errors.password === '' &&
         this.errors.name === ''
       if (this.success) {
-        this.$store.commit('auth/login')
-        this.$router.push({ path: '/home' })
+        // this.$store.commit('auth/login')
+        // this.$router.push({ path: '/home' })
       }
     },
   },
