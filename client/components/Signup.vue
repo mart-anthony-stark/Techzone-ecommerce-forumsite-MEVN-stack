@@ -112,7 +112,6 @@ export default {
           }),
         })
         const data = await res.json()
-        console.log(data)
         if (!data.success) {
           if (data.error.keyPattern) {
             for (const duplicate in data.error.keyPattern) {
