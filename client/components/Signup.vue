@@ -91,7 +91,8 @@ export default {
       if (this.email === '') this.errors.email = 'Email is required.'
       else this.errors.email = ''
 
-      if (this.password === '') this.errors.password = 'Password is required.'
+      if (this.password.length < 8)
+        this.errors.password = 'Password is required.'
       else this.errors.password = ''
 
       this.success =
@@ -115,11 +116,10 @@ export default {
         if (!data.success) {
           if (data.error.keyPattern) {
             for (const duplicate in data.error.keyPattern) {
-              console.log(duplicate)
               if (duplicate === 'username')
                 this.errors.name = 'This username is already taken'
               if (duplicate === 'email')
-                this.errors.name = 'This email is already registered'
+                this.errors.email = 'This email is already registered'
             }
           }
         } else {
