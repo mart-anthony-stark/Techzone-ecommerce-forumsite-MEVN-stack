@@ -113,9 +113,10 @@ export default {
         const data = await res.json()
         console.log(data)
         if (!data.success) {
-          data.msg === 'Account not found'
-            ? (this.errors.email = data.msg)
-            : (this.errors.password = data.msg)
+          console.log(data.error.keyPattern.username)
+          if(data.error.keyPattern){
+            
+          }
         } else {
           localStorage.setItem('token', data.token)
           this.$store.commit('auth/login', data.user)
