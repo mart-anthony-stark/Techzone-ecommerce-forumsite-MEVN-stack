@@ -83,7 +83,7 @@ export default {
     }
   },
   methods: {
-    signup(e) {
+    async signup(e) {
       e.preventDefault()
       if (this.name === '') this.errors.name = 'Username is required.'
       else this.errors.name = ''
