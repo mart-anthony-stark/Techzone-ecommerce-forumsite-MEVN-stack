@@ -114,8 +114,12 @@ export default {
         console.log(data)
         if (!data.success) {
           if (data.error.keyPattern) {
-            for (const duplicates in data.error.keyPattern) {
-              console.log(duplicates)
+            for (const duplicate in data.error.keyPattern) {
+              console.log(duplicate)
+              if (duplicate === 'username')
+                this.errors.name = 'This username is already taken'
+              if (duplicate === 'email')
+                this.errors.name = 'This email is already registered'
             }
           }
         } else {
