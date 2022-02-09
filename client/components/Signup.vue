@@ -122,12 +122,10 @@ export default {
             }
           }
         } else {
-          // localStorage.setItem('token', data.token)
-          // this.$store.commit('auth/login', data.user)
-          // this.$router.push({ path: '/home' })
+          localStorage.setItem('token', data.token)
+          this.$store.commit('auth/login', data.user)
+          this.$router.push({ path: '/home' })
         }
-        // this.$store.commit('auth/login')
-        // this.$router.push({ path: '/home' })
       }
     },
   },
