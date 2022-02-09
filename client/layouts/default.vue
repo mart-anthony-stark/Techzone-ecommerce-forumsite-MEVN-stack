@@ -27,6 +27,7 @@ export default {
   methods: {
     logout() {
       this.showLogout = false
+      localStorage.clear()
       this.$store.commit('auth/logout')
       this.$router.push({ path: '/' })
     },
