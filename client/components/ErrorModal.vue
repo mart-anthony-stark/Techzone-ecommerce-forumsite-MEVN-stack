@@ -1,6 +1,6 @@
 <template>
   <div class="error-modal p-6 text-white fixed">
-    <h1>{{ error }}</h1>
+    <h1>{{ error || 'Something went wrong' }}</h1>
   </div>
 </template>
 
