@@ -1,6 +1,9 @@
 <template>
   <div class="home mt-24">
-    <ErrorModal v-if="createPostError" error="You must enter title and body to your post." />
+    <ErrorModal
+      v-if="createPostError"
+      error="You must enter title and body to your post."
+    />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
@@ -82,6 +85,7 @@ export default {
       search: '',
       loading: true,
       loaders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      createPostError: false,
     }
   },
   computed: {
