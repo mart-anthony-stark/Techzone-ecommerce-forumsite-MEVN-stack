@@ -1,6 +1,6 @@
 <template>
   <div class="home mt-24">
-    <ErrorModal error="You must enter title and body to your post." />
+    <ErrorModal v-if="createPostError" error="You must enter title and body to your post." />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
