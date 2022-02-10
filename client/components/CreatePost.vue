@@ -43,7 +43,7 @@ export default {
     async createNewPost() {
       console.log('Post')
       if (this.title.length === 0 || this.body.length === 0) {
-        console.log('All fields are required')
+        this.$emit('error', 'Post title and body cannot be empty')
         return
       }
       try {
