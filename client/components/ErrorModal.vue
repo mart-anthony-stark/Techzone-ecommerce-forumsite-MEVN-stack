@@ -6,7 +6,8 @@
 
 <style scoped>
 .error-modal {
-  top: 20px;
+  top: 200px;
+  border-radius: 5px;
   left: 50%;
   background: var(--c-accent);
   transform: translateX(-50%);
