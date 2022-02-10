@@ -1,8 +1,14 @@
 <template>
   <div class="error-modal p-6 text-white fixed">
-    <h1>Error</h1>
+    <h1>{{ error }}</h1>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['error'],
+}
+</script>
 
 <style scoped>
 .error-modal {
