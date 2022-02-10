@@ -1,6 +1,6 @@
 <template>
   <div class="home mt-24">
-    <ErrorModal/>
+    <ErrorModal error="You must enter title and body to your post." />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
@@ -131,9 +131,9 @@ export default {
     this.$store.commit('posts/populate', posts)
     if (posts.length !== 0) this.$store.commit('posts/nextPage')
   },
-  destroyed(){
+  destroyed() {
     this.$store.commit('posts/resetPages')
-  }
+  },
 }
 </script>
 
