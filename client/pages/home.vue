@@ -1,5 +1,6 @@
 <template>
   <div class="home mt-24">
+    <ErrorModal/>
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
