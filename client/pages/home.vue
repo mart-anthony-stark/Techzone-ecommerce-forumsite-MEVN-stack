@@ -1,13 +1,14 @@
 <template>
   <div class="home mt-24">
     <ErrorModal
-      v-if="createPostError"
+      v-if="createPostError !== ''"
       error="You must enter title and body to your post."
     />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
       @closeCreatePost="createShown = false"
+      @error="handlePostError"
     />
     <h1 class="font-bold text-center text-4xl mb-8 text-sec">Tech Forum</h1>
 
@@ -85,7 +86,7 @@ export default {
       search: '',
       loading: true,
       loaders: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      createPostError: false,
+      createPostError: '',
     }
   },
   computed: {
@@ -110,6 +111,9 @@ export default {
     },
   },
   methods: {
+    handlePostError(){
+      
+    },
     async getPosts() {
       const res = await fetch(
         `${process.env.baseUrl}/posts/paginated?page=${this.currentPage}&limit=5`
