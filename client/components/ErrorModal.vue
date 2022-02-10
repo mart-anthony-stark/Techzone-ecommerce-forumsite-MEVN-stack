@@ -1,11 +1,15 @@
 <template>
-  <div class="error-modal p2 absolute">
+  <div class="error-modal p-6 text-white fixed">
     <h1>Error</h1>
   </div>
 </template>
 
 <style scoped>
-.error-modal{
-    
+.error-modal {
+  top: 20px;
+  left: 50%;
+  background: var(--c-accent);
+  transform: translateX(-50%);
+  z-index: 99;
 }
 </style>
