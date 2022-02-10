@@ -1,9 +1,6 @@
 <template>
   <div class="home mt-24">
-    <ErrorModal
-      v-if="createPostError !== ''"
-      :error="createdPostError"
-    />
+    <ErrorModal v-if="createPostError !== ''" :error="createdPostError" />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
@@ -129,6 +126,7 @@ export default {
       this.$store.commit('posts/down', index)
     },
     handleCreatedPost() {
+      this.createPostError = ''
       this.createShown = false
       this.getPosts()
     },
