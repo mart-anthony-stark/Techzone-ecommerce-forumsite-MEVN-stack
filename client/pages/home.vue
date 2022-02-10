@@ -1,10 +1,10 @@
 <template>
   <div class="home mt-24">
-    <ErrorModal v-if="createPostError !== ''" :error="createdPostError" />
+    <ErrorModal v-if="createPostError.length !== 0" :error="createPostError" />
     <CreatePost
       @createdPost="handleCreatedPost"
       v-if="createShown"
-      @closeCreatePost="createShown = false"
+      @closeCreatePost="handleCreatedPost"
       @error="handlePostError"
     />
     <h1 class="font-bold text-center text-4xl mb-8 text-sec">Tech Forum</h1>
@@ -109,6 +109,7 @@ export default {
   },
   methods: {
     handlePostError(err) {
+      console.log({ err, postError: this.createPostError })
       this.createPostError = err
     },
     async getPosts() {
