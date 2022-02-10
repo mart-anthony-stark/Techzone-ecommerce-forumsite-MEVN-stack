@@ -12,11 +12,11 @@ export default {
 
 <style scoped>
 .error-modal {
-  top: 200px;
+  top: 70px;
   border-radius: 5px;
   left: 50%;
   background: var(--c-accent);
   transform: translateX(-50%);
-  z-index: 99;
+  z-index: 9999;
 }
 </style>
