@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     async createNewPost() {
-      console.log('Post')
+      console.log(this.title.length)
       if (this.title.length === 0 || this.body.length === 0) {
         this.$emit('error', 'Post title and body cannot be empty')
         return
