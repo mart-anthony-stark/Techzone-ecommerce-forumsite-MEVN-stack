@@ -2,7 +2,7 @@
   <div class="home mt-24">
     <ErrorModal
       v-if="createPostError !== ''"
-      error="You must enter title and body to your post."
+      :error="createdPostError"
     />
     <CreatePost
       @createdPost="handleCreatedPost"
