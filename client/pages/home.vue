@@ -111,8 +111,8 @@ export default {
     },
   },
   methods: {
-    handlePostError(){
-      
+    handlePostError(err) {
+      this.createPostError = err
     },
     async getPosts() {
       const res = await fetch(
