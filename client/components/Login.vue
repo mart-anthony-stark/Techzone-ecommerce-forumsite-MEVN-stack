@@ -88,7 +88,6 @@ export default {
           body: JSON.stringify({ email: this.email, password: this.password }),
         })
         const data = await res.json()
-        console.log(data)
         if (!data.success) {
           data.msg === 'Account not found'
             ? (this.errors.email = data.msg)
