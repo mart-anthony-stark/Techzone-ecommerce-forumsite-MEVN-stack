@@ -3,9 +3,9 @@ const bcrypt = require("bcryptjs");
 const { createToken } = require("../utils/token");
 
 const login = async (req, reply) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const user = await User.findOne({ $or: [{ username }, { email }] });
+    const user = await User.findOne({ $or: [{ username: email }, { email }] });
     if (!user)
       return reply.code(404).send({ success: false, msg: "Account not found" });
 
