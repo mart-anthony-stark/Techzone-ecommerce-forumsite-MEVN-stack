@@ -26,6 +26,7 @@ export default {
       displaySvg: '/images/space-tech.svg',
     }
   },
+  computed:{},
   methods: {
     changeForm(form) {
       this.component = form
