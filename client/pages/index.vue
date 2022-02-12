@@ -26,10 +26,10 @@ export default {
       displaySvg: '/images/space-tech.svg',
     }
   },
-  computed:{
-    isAuth(){
+  computed: {
+    isAuth() {
       return this.$store.state.auth.isLogged
-    }
+    },
   },
   methods: {
     changeForm(form) {
@@ -37,6 +37,9 @@ export default {
       if (form === 'Login') this.displaySvg = '/images/space-tech.svg'
       else this.displaySvg = '/images/gadgets.svg'
     },
+  },
+  mounted() {
+    this.isAuth && this.$router.push('/home')
   },
 }
 </script>
