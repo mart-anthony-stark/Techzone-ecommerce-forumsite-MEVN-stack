@@ -26,7 +26,11 @@ export default {
       displaySvg: '/images/space-tech.svg',
     }
   },
-  computed:{},
+  computed:{
+    isAuth(){
+      return this.$store.state.auth.isLogged
+    }
+  },
   methods: {
     changeForm(form) {
       this.component = form
