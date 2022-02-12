@@ -20,7 +20,7 @@ import { mapMutations } from 'vuex';
           v-model="email"
           class="w-full rounded text-black p-2"
           type="text"
-          placeholder="Email"
+          placeholder="Email or Username"
         />
       </div>
 
