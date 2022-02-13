@@ -11,5 +11,6 @@ export default async ({ store }) => {
       return
     }
   }
+  store.commit('global/toggleCheckingAuth')
   store.commit('auth/logout')
 }
