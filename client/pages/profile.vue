@@ -1,7 +1,7 @@
 <template>
   <div class="section mt-24 px-4">
     <!-- <h1 class="text-sec text-center text-4xl font-bold">My Profile</h1> -->
-    <div v-if="!isAuthLoading" class="flex flex-col items-center mt-4">
+    <div v-if="!isAuth" class="flex flex-col items-center mt-4">
       <div class="user flex flex-col items-center">
         <img class="profile-pic" src="/images/gigachad.jpg" />
         <h1 class="text-2xl">John Doe</h1>
