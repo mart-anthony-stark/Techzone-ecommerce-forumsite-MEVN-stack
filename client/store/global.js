@@ -1,7 +1,7 @@
 export const state = () => ({
   showChatbox: false,
   showMobileNav: false,
-  checkingAuth: false,
+  checkingAuth: true,
 })
 
 export const mutations = {
