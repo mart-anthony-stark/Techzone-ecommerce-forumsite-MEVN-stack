@@ -125,6 +125,14 @@ export default {
       ],
     }
   },
+  computed: {
+    isAuth() {
+      return this.$store.state.auth.isLogged
+    },
+  },
+  mounted() {
+    if (!this.isAuth) this.$router.push('/')
+  },
 }
 </script>
 
