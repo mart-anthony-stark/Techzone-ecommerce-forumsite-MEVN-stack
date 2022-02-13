@@ -1,5 +1,5 @@
-<template>
-  <div class="section mt-24 px-8">
+<template >
+  <div v-if="isLogged" class="section mt-24 px-8">
     <h1 class="font-bold text-center text-4xl mb-8 text-sec">Order Tracker</h1>
     <div class="flex justify-center">
       <div class="card">
@@ -135,6 +135,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    isLogged() {
+      return this.$store.state.auth.isLogged
+    },
   },
 }
 </script>
