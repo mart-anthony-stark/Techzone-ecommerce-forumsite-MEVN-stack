@@ -25,7 +25,7 @@
             Shop
           </button></NuxtLink
         >
-        <NuxtLink to="/order-tracker"
+        <NuxtLink v-if="isLogged" to="/order-tracker"
           ><button class="navlink hover:border-b hover:border-blue-400">
             Order Status
           </button></NuxtLink
