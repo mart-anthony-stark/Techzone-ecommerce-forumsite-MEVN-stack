@@ -134,8 +134,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.isAuthLoading)
-    // if (!this.isAuth) this.$router.push('/')
+    if (!this.isAuthLoading && !this.isAuth) this.$router.push('/')
   },
 }
 </script>
