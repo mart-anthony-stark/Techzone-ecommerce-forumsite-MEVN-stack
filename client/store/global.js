@@ -1,4 +1,8 @@
-export const state = () => ({ showChatbox: false, showMobileNav: false })
+export const state = () => ({
+  showChatbox: false,
+  showMobileNav: false,
+  checkingAuth: false,
+})
 
 export const mutations = {
   toggleNav(state) {
@@ -9,5 +13,8 @@ export const mutations = {
   },
   close(state) {
     state.showChatbox = false
+  },
+  toggleCheckingAuth(state) {
+    state.checkingAuth = !state.checkingAuth
   },
 }
