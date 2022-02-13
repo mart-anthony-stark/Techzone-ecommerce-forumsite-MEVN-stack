@@ -140,11 +140,13 @@ export default {
     isLogged() {
       return this.$store.state.auth.isLogged
     },
-    authLoading(){
+    authLoading() {
       return this.$store.state.global.checkingAuth
-    }
+    },
   },
-  
+  mounted() {
+    if (!this.isLogged && !this.authLoading) return this.$router.push('/')
+  },
 }
 </script>
 
