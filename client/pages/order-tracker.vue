@@ -140,7 +140,11 @@ export default {
     isLogged() {
       return this.$store.state.auth.isLogged
     },
+    authLoading(){
+      return this.$store.state.global.checkingAuth
+    }
   },
+  
 }
 </script>
 
