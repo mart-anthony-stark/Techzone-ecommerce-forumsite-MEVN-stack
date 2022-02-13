@@ -141,8 +141,6 @@ export default {
 </script>
 
 <style scoped>
-.user {
-}
 .user img {
   border-radius: 100%;
   width: 200px;
