@@ -1,7 +1,7 @@
 <template>
   <div class="section mt-24 px-4">
     <!-- <h1 class="text-sec text-center text-4xl font-bold">My Profile</h1> -->
-    <div class="flex flex-col items-center mt-4">
+    <div v-if="!isAuthLoading" class="flex flex-col items-center mt-4">
       <div class="user flex flex-col items-center">
         <img class="profile-pic" src="/images/gigachad.jpg" />
         <h1 class="text-2xl">John Doe</h1>
@@ -129,9 +129,13 @@ export default {
     isAuth() {
       return this.$store.state.auth.isLogged
     },
+    isAuthLoading() {
+      return this.$store.state.global.checkingAuth
+    },
   },
   mounted() {
-    if (!this.isAuth) this.$router.push('/')
+    console.log(this.isAuthLoading)
+    // if (!this.isAuth) this.$router.push('/')
   },
 }
 </script>
